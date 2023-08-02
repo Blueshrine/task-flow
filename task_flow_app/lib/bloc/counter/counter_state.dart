@@ -12,3 +12,11 @@ final class CounterState extends Equatable {
 final class CounterInitial extends CounterState {
   const CounterInitial() : super(counterValue: 0);
 }
+
+final class IncrementState extends CounterState {
+  const IncrementState(int value) : super(counterValue: value);
+}
+
+final class DecrementState extends CounterState {
+  const DecrementState(int value) : super(counterValue: value);
+}

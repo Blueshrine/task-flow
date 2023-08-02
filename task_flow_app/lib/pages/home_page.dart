@@ -34,10 +34,29 @@ final class HomePage extends StatelessWidget {
       ),
       body: SafeArea(
         child: Center(
-          child: BlocBuilder<CounterBloc, CounterState>(
-            builder: (context, state) {
-              return Text('Counter Value: ${state.counterValue}');
+          child: BlocListener<CounterBloc, CounterState>(
+            listener: (context, state) {
+              if (state is IncrementState) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Successfully increased.'),
+                    duration: Duration(milliseconds: 300),
+                  ),
+                );
+              } else if (state is DecrementState) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Successfully decreased.'),
+                    duration: Duration(milliseconds: 300),
+                  ),
+                );
+              }
             },
+            child: BlocBuilder<CounterBloc, CounterState>(
+              builder: (context, state) {
+                return Text('Counter Value: ${state.counterValue}');
+              },
+            ),
           ),
         ),
       ),

@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import './pages/home_page.dart';
 import './bloc/exported_blocs.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  Bloc.observer = MyBlocObserver();
+  runApp(const MyApp());
+}
 
 final class MyApp extends StatelessWidget {
   const MyApp({super.key});

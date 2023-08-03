@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 
 import './pages/home_page.dart';
 import './bloc/exported_blocs.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  HydratedBloc.storage = await HydratedStorage.build(
+    storageDirectory: await getApplicationDocumentsDirectory(),
+  );
   Bloc.observer = MyBlocObserver();
+
   runApp(const MyApp());
 }
 

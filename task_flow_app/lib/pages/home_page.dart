@@ -34,7 +34,7 @@ final class HomePage extends StatelessWidget {
       ),
       body: SafeArea(
         child: Center(
-          child: BlocListener<CounterBloc, CounterState>(
+          child: BlocConsumer<CounterBloc, CounterState>(
             listener: (context, state) {
               if (state is IncrementState) {
                 ScaffoldMessenger.of(context).showSnackBar(
@@ -52,11 +52,9 @@ final class HomePage extends StatelessWidget {
                 );
               }
             },
-            child: BlocBuilder<CounterBloc, CounterState>(
-              builder: (context, state) {
-                return Text('Counter Value: ${state.counterValue}');
-              },
-            ),
+            builder: (context, state) {
+              return Text('Counter Value: ${state.counterValue}');
+            },
           ),
         ),
       ),

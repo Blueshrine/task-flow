@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/task_model.dart';
+import '../ui/styles/app_text_styles.dart';
 
 final class TaskData extends StatelessWidget {
   final TaskModel task;
@@ -14,8 +15,14 @@ final class TaskData extends StatelessWidget {
         value: task.isDone,
         onChanged: (value) {},
       ),
-      title: Text(task.title),
-      subtitle: Text(task.description),
+      title: Text(
+        task.title,
+        style: context.appTextStyles.textSemiBold,
+      ),
+      subtitle: Text(
+        task.description,
+        style: context.appTextStyles.textRegular,
+      ),
     );
   }
 }

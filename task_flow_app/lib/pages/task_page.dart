@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/task_model.dart';
+import '../ui/styles/app_text_styles.dart';
 import '../widgets/task_data.dart';
 
 final class TaskPage extends StatelessWidget {
@@ -19,9 +20,9 @@ final class TaskPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const Icon(Icons.menu),
-        title: const Text(
+        title: Text(
           'Task Flow',
-          style: TextStyle(
+          style: context.appTextStyles.textTitle.copyWith(
             color: Colors.white,
           ),
         ),

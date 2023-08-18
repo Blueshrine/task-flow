@@ -6,6 +6,11 @@ import '../styles/app_text_styles.dart';
 final class ThemeConfiguration {
   ThemeConfiguration._();
 
+  // static final _defaultInputBorder = OutlineInputBorder(
+  //   borderRadius: BorderRadius.circular(0),
+  //   borderSide: BorderSide(color: Colors.grey[400]!),
+  // );
+
   static final appTheme = ThemeData(
     useMaterial3: true,
     scaffoldBackgroundColor: Colors.white,
@@ -23,9 +28,13 @@ final class ThemeConfiguration {
       backgroundColor: Color.fromARGB(255, 9, 64, 136),
     ),
     inputDecorationTheme: InputDecorationTheme(
-      fillColor: Colors.white,
+      fillColor: Colors.black,
       filled: true,
       isDense: true,
+      contentPadding: const EdgeInsets.all(10.0),
+      //border: _defaultInputBorder,
+      //enabledBorder: _defaultInputBorder,
+      //focusedBorder: _defaultInputBorder,
       labelStyle: AppTextStyles.instance.textRegular.copyWith(
         color: Colors.black,
       ),

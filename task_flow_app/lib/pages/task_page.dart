@@ -3,9 +3,27 @@ import 'package:flutter/material.dart';
 import '../ui/styles/app_text_styles.dart';
 import '../widgets/task_data.dart';
 import '../bloc/exported_blocs.dart';
+import '../widgets/task_form_modal.dart';
 
 final class TaskPage extends StatelessWidget {
   const TaskPage({super.key});
+
+  void addTask(BuildContext context) {
+    showModalBottomSheet(
+      shape: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(0),
+      ),
+      context: context,
+      builder: (context) => SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: const TaskFormModal(),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +49,7 @@ final class TaskPage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         tooltip: 'Add new task.',
-        onPressed: () {},
+        onPressed: () => addTask(context),
         child: const Icon(Icons.post_add),
       ),
       body: SafeArea(

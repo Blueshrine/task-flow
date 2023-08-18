@@ -2,13 +2,13 @@ import 'package:equatable/equatable.dart';
 
 final class TaskModel extends Equatable {
   final String title;
-  final String description;
+  final String? description;
   final bool? isDone;
   final bool? isDeleted;
 
   const TaskModel({
     required this.title,
-    required this.description,
+    this.description,
     this.isDone = false,
     this.isDeleted = false,
   });
@@ -39,7 +39,7 @@ final class TaskModel extends Equatable {
   factory TaskModel.fromMap(Map<String, dynamic> map) {
     return TaskModel(
       title: map['title'] ?? '',
-      description: map['description'] ?? '',
+      description: map['description'],
       isDone: map['isDone'],
       isDeleted: map['isDeleted'],
     );

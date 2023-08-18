@@ -19,10 +19,12 @@ final class TaskData extends StatelessWidget {
         task.title,
         style: context.appTextStyles.textSemiBold,
       ),
-      subtitle: Text(
-        task.description,
-        style: context.appTextStyles.textRegular,
-      ),
+      subtitle: task.description != null
+          ? Text(
+              task.description!,
+              style: context.appTextStyles.textRegular,
+            )
+          : null,
     );
   }
 }

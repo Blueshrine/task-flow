@@ -8,7 +8,7 @@ import '../widgets/task_form_modal.dart';
 final class TaskPage extends StatelessWidget {
   const TaskPage({super.key});
 
-  void addTask(BuildContext context) {
+  void _addTask(BuildContext context) {
     showModalBottomSheet(
       shape: OutlineInputBorder(
         borderRadius: BorderRadius.circular(0),
@@ -38,7 +38,7 @@ final class TaskPage extends StatelessWidget {
         ),
         actions: <Widget>[
           IconButton(
-            onPressed: () {},
+            onPressed: () => _addTask(context),
             icon: const Icon(Icons.add_circle_rounded),
           ),
           IconButton(
@@ -49,7 +49,7 @@ final class TaskPage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         tooltip: 'Add new task.',
-        onPressed: () => addTask(context),
+        onPressed: () => _addTask(context),
         child: const Icon(Icons.post_add),
       ),
       body: SafeArea(
@@ -59,9 +59,12 @@ final class TaskPage extends StatelessWidget {
               child: BlocBuilder<TaskBloc, TaskState>(
                 builder: (context, state) {
                   final tasks = state.allTasks;
-                  return ListView.builder(
-                    itemCount: tasks.length,
-                    itemBuilder: (_, index) => TaskData(task: tasks[index]),
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: ListView.builder(
+                      itemCount: tasks.length,
+                      itemBuilder: (_, index) => TaskData(task: tasks[index]),
+                    ),
                   );
                 },
               ),

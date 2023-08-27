@@ -5,6 +5,20 @@ final class TaskState extends Equatable {
 
   const TaskState({required this.allTasks});
 
+  Map<String, dynamic> toMap() {
+    return {
+      'all_tasks': allTasks.map((e) => e.toMap()).toList(),
+    };
+  }
+
+  factory TaskState.fromMap(Map<String, dynamic> map) {
+    return TaskState(
+      allTasks: List<TaskModel>.from(
+        map['all_tasks']?.map((t) => TaskModel.fromMap(t)),
+      ),
+    );
+  }
+
   @override
   List<Object> get props => [allTasks];
 }

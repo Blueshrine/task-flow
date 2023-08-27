@@ -1,12 +1,12 @@
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../models/task_model.dart';
+import '../exported_blocs.dart';
 
 part 'task_event.dart';
 part 'task_state.dart';
 
-final class TaskBloc extends Bloc<TaskEvent, TaskState> {
+final class TaskBloc extends HydratedBloc<TaskEvent, TaskState> {
   TaskBloc() : super(const InitialTaskState()) {
     on<AddTaskEvent>(_onAddTask);
     on<UpdateTaskEvent>(_onUpdateTask);
@@ -38,4 +38,10 @@ final class TaskBloc extends Bloc<TaskEvent, TaskState> {
 
     emit(TapCheckboxTaskState(allTasks));
   }
+
+  @override
+  TaskState? fromJson(Map<String, dynamic> json) => TaskState.fromMap(json);
+
+  @override
+  Map<String, dynamic>? toJson(TaskState state) => state.toMap();
 }

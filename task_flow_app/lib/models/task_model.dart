@@ -1,6 +1,4 @@
-import 'package:equatable/equatable.dart';
-
-final class TaskModel extends Equatable {
+final class TaskModel {
   final String title;
   final String? description;
   final bool? isDone;
@@ -44,7 +42,4 @@ final class TaskModel extends Equatable {
       isDeleted: map['isDeleted'],
     );
   }
-
-  @override
-  List<Object?> get props => [title, description, isDone, isDeleted];
 }

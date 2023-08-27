@@ -60,7 +60,7 @@ final class TaskPage extends StatelessWidget {
                 builder: (context, state) {
                   final tasks = state.allTasks;
                   return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    padding: const EdgeInsets.all(10),
                     child: ListView.builder(
                       itemCount: tasks.length,
                       itemBuilder: (_, index) => TaskData(task: tasks[index]),

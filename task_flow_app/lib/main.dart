@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import './ui/theme/theme_configuration.dart';
 import './pages/task_page.dart';
 import './bloc/exported_blocs.dart';
-import 'models/task_model.dart';
+import './models/task_model.dart';
 
 void main() => runApp(const MyApp());
 

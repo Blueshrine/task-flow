@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../bloc/exported_blocs.dart';
 import '../models/task_model.dart';
 import '../ui/styles/app_text_styles.dart';
+import './task_confirm_delete_modal.dart';
 
 final class TaskData extends StatelessWidget {
   final TaskModel task;
@@ -20,7 +21,10 @@ final class TaskData extends StatelessWidget {
       ),
       title: Text(
         task.title,
-        style: context.appTextStyles.textSemiBold,
+        style: context.appTextStyles.textSemiBold.copyWith(
+          decoration: task.isDone! ? TextDecoration.lineThrough : null,
+          color: task.isDone! ? Colors.grey : Colors.black,
+        ),
       ),
       subtitle: task.description != null
           ? Text(
@@ -31,52 +35,7 @@ final class TaskData extends StatelessWidget {
       onLongPress: () {
         showDialog(
           context: context,
-          builder: (context) {
-            return AlertDialog.adaptive(
-              backgroundColor: Colors.white,
-              title: RichText(
-                text: TextSpan(
-                  style: context.appTextStyles.textRegular.copyWith(
-                    color: Colors.black,
-                    fontSize: 18,
-                  ),
-                  children: <InlineSpan>[
-                    const TextSpan(text: 'Deseja excluir: '),
-                    TextSpan(
-                      text: task.title,
-                      style: context.appTextStyles.textExtraBold,
-                    ),
-                  ],
-                ),
-              ),
-              actions: <Widget>[
-                TextButton(
-                  onPressed: () {
-                    context.read<TaskBloc>().add(DeleteTaskEvent(task: task));
-                    Navigator.pop(context);
-                  },
-                  child: Text(
-                    'Sim',
-                    style: context.appTextStyles.textSemiBold
-                        .copyWith(color: Colors.red),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  style: TextButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    backgroundColor: Colors.black,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  child: Text('Não', style: context.appTextStyles.textBold),
-                ),
-              ],
-            );
-          },
+          builder: (context) => TaskConfirmDeleteModal(task: task),
         );
       },
     );

@@ -33,3 +33,12 @@ final class DeleteTaskEvent extends TaskEvent {
   @override
   List<Object> get props => [task];
 }
+
+final class TapCheckboxTaskEvent extends TaskEvent {
+  final TaskModel task;
+
+  const TapCheckboxTaskEvent({required this.task});
+
+  @override
+  List<Object> get props => [task];
+}

@@ -24,3 +24,7 @@ final class UpdatingTaskState extends TaskState {
 final class DeletingTaskState extends TaskState {
   const DeletingTaskState(List<TaskModel> tasks) : super(allTasks: tasks);
 }
+
+final class TapCheckboxTaskState extends TaskState {
+  const TapCheckboxTaskState(List<TaskModel> tasks) : super(allTasks: tasks);
+}

@@ -11,6 +11,7 @@ final class TaskBloc extends Bloc<TaskEvent, TaskState> {
     on<AddTaskEvent>(_onAddTask);
     on<UpdateTaskEvent>(_onUpdateTask);
     on<DeleteTaskEvent>(_onDeleteTask);
+    on<TapCheckboxTaskEvent>(_onTapCheckboxTask);
   }
 
   void _onAddTask(AddTaskEvent event, Emitter<TaskState> emit) {
@@ -18,5 +19,23 @@ final class TaskBloc extends Bloc<TaskEvent, TaskState> {
   }
 
   void _onUpdateTask(UpdateTaskEvent event, Emitter<TaskState> emit) {}
-  void _onDeleteTask(DeleteTaskEvent event, Emitter<TaskState> emit) {}
+
+  void _onDeleteTask(DeleteTaskEvent event, Emitter<TaskState> emit) {
+    emit(DeletingTaskState(List.from(state.allTasks)..remove(event.task)));
+  }
+
+  void _onTapCheckboxTask(
+    TapCheckboxTaskEvent event,
+    Emitter<TaskState> emit,
+  ) {
+    final TaskModel task = event.task;
+    final int index = state.allTasks.indexOf(task);
+    final List<TaskModel> allTasks = List.from(state.allTasks)..removeAt(index);
+
+    task.isDone == false
+        ? allTasks.insert(index, task.copyWith(isDone: true))
+        : allTasks.insert(index, task.copyWith(isDone: false));
+
+    emit(TapCheckboxTaskState(allTasks));
+  }
 }
